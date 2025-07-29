@@ -5,7 +5,9 @@ const Login = lazy(()=>import('./components/Login'));
 
 function App() {
   // You would manage authentication state here
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('token'));
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
+  // const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('token'));
 
   // For demonstration, simulate login
   const handleLoginSuccess = () => {
