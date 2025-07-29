@@ -13,8 +13,11 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import MessageNode from './MessageNode';
+import CustomEdge from './CustomEdge';
 
 const nodeTypes = { messageNode: MessageNode };
+
+const edgeTypes = { custom: CustomEdge };
 
 export default function Flow() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -23,7 +26,7 @@ export default function Flow() {
   const { screenToFlowPosition } = useReactFlow();
 
   const onConnect = useCallback(
-    (params) => setEdges((edgesSnapshot) => addEdge({...params, markerEnd: { type: MarkerType.ArrowClosed }}, edgesSnapshot)),
+    (params) => setEdges((edgesSnapshot) => addEdge({...params, type:'custom', markerEnd: { type: MarkerType.ArrowClosed }}, edgesSnapshot)),
     [],
   );
 
@@ -57,7 +60,7 @@ export default function Flow() {
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
-        // edgeTypes={edgeTypes}
+        edgeTypes={edgeTypes}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
